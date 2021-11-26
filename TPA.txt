@@ -1,2 +1,34 @@
-opaopa
-eita
+//Criar um programa de biblioteca que controle o empréstimo de livros previamente cadastrados e que permita a qualquer momento consultar a disponibilidade de um determinado livro.
+
+// Harry Potter (Enigma do Príncipe), Chronos, Lady Killers, Bíblia Sagrada, As vantagens de ser invísvel, Jojos Bizarre Adventures - Diamond is Unbreakable
+
+using System;
+class MainClass {
+  public static void Main (string[] args) {
+    int opcao = 0;
+    bool sair = false;
+    string[] livro = {"Harry Potter (Enigma do Príncipe)","Chronos", "Lady Killers", "Bíblia Sagrada", "As vantagens de ser invisível", "Jojos Bizarre Adventures - Diamond is Unbreakable"};
+    bool[] disponivel = new bool[6];
+
+    while(sair!=true){
+       Console.WriteLine($"==================\nMILKSHAKESPEARE LIBRARY\n==================\n[1] - Emprestar livro\n[2] - Exibir lista de livros\n[0] - Sair.  ");
+      opcao = int.Parse(Console.ReadLine());
+      Console.Clear();
+      switch(opcao){
+        default: // opção inexistente.
+        break;
+
+        case 1: // emprestimo.
+        break;
+
+        case 2: // exibir a lista de livros.
+        break;
+
+        case 0: // Sair.
+          sair = true;
+          Console.Clear();
+        break;
+      }
+    }
+  }
+}
