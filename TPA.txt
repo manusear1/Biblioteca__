@@ -93,6 +93,17 @@ class MainClass {
   }
 
   static bool DesalugarLivro(string[] livro, bool[] disponivel, int opcao){
-    return false;
+    string confirmar = "";
+    Console.Write($"Deseja desalugar o livro {livro[opcao]}? [S/N]: ");
+    confirmar = Console.ReadLine();
+    if(confirmar.ToUpper()=="S"){
+      Console.WriteLine($"\nO livro {livro[opcao]} foi desalugado com sucesso! Pressione ENTER para CONTINUAR.");
+      Console.ReadLine();
+      return true;
+    }else{
+      Console.WriteLine("O desalugamento do livro foi cancelado. Aperte ENTER para CONTINUAR.");
+      return false;
+    }
+    Console.Clear();
   }
 }
