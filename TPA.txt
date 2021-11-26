@@ -16,6 +16,9 @@ class MainClass {
       Console.Clear();
       switch(opcao){
         default: // opção inexistente.
+          Console.WriteLine("Essa opção não existe! Aperte ENTER para VOLTAR.");
+          Console.ReadLine();
+          Console.Clear();
         break;
 
         case 1: // emprestimo.
