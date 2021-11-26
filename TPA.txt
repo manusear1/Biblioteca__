@@ -10,8 +10,12 @@ class MainClass {
     string[] livro = {"Harry Potter (Enigma do Príncipe)","Chronos", "Lady Killers", "Bíblia Sagrada", "As vantagens de ser invisível", "Jojos Bizarre Adventures - Diamond is Unbreakable"};
     bool[] disponivel = new bool[6];
 
+    for(int i = 0; i<=5; i++){ //preenchendo o vetor com valores de "false"
+      disponivel[i] = true;
+    }
+    
     while(sair!=true){
-       Console.WriteLine($"==================\nMILKSHAKESPEARE LIBRARY\n==================\n[1] - Emprestar livro\n[2] - Exibir lista de livros\n[0] - Sair.  ");
+       Console.WriteLine($"==================\nMILKSHAKESPEARE LIBRARY\n==================\n[1] - Controlar empréstimo\n[2] - Exibir lista de livros\n[0] - Sair.  ");
       opcao = int.Parse(Console.ReadLine());
       Console.Clear();
       switch(opcao){
@@ -21,10 +25,34 @@ class MainClass {
           Console.Clear();
         break;
 
-        case 1: // emprestimo.
+        case 1: // agiotagem.
+          while(sair!=true){
+            Console.WriteLine("Deseja manipular o empréstimo de qual livro?\n[0] - Harry Potter (Enigma do Príncipe)\n[1] - Chronos\n[2] - Lady Killers\n[3] - Bíblia Sagrada\n[4] - As vantagens de ser invisível\n[5] - Jojos Bizarre Adventures - Diamond is Unbreakable\n[6] - Sair");
+            opcao = int.Parse(Console.ReadLine());
+            Console.Clear();
+            if(opcao<0 || opcao>6){ //se escolher uma opção fora do escopo
+              Console.WriteLine("Essa opção não existe. Aperte ENTER para VOLTAR.");
+              Console.ReadLine();
+              Console.Clear();
+            }else if(opcao==6){ // se escolher sair
+              sair = true;
+              Console.Clear();
+            }else{
+              if(disponivel[opcao]==false){
+                disponivel[opcao] = DesalugarLivro(livro, disponivel, opcao); // se o livro estiver indisponível teremos a opção de convertê-lo para disponível
+              }else{
+                disponivel[opcao] = AlugarLivro(livro, disponivel, opcao); // se o livro estiver disponível, alugaremos, transformando-o em indisponível
+              }
+              Console.Clear();
+            }
+
+          }
+          sair = false; // retornando o valor de true para não fechar o programa
+          
         break;
 
         case 2: // exibir a lista de livros.
+          ListarLivros(livro, disponivel);
         break;
 
         case 0: // Sair.
@@ -33,5 +61,38 @@ class MainClass {
         break;
       }
     }
+  }
+
+  static void ListarLivros(string[] livro, bool[] disponivel){
+    for(int i = 0; i<=5; i++){
+      Console.Write($"{livro[i]} | ");
+      if(disponivel[i]==true){
+        Console.Write("DISPONÍVEL.\n");
+      }else{
+        Console.Write("ALUGADO.\n");
+      }
+      Console.WriteLine("- - - - - - - - - - - - - - - - - - - - - - - - - - - -");
+    }
+    Console.ReadLine();
+    Console.Clear();
+  }
+
+  static bool AlugarLivro(string[] livro, bool[] disponivel, int opcao){
+    string confirmar = "";
+    Console.Write($"Deseja alugar o livro {livro[opcao]}? [S/N]: ");
+    confirmar = Console.ReadLine();
+    if(confirmar.ToUpper()=="S"){
+      Console.WriteLine($"\nO livro {livro[opcao]} foi alugado com sucesso! Pressione ENTER para CONTINUAR.");
+      Console.ReadLine();
+      return false;
+    }else{
+      Console.WriteLine("O alugamento do livro foi cancelado. Aperte ENTER para CONTINUAR.");
+      return true;
+    }
+    Console.Clear();
+  }
+
+  static bool DesalugarLivro(string[] livro, bool[] disponivel, int opcao){
+    return false;
   }
 }
