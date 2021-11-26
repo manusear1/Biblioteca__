@@ -25,7 +25,7 @@ class MainClass {
           Console.Clear();
         break;
 
-        case 1: // agiotagem.
+        case 1: // emprestimo.
           while(sair!=true){
             Console.WriteLine("Deseja manipular o empréstimo de qual livro?\n[0] - Harry Potter (Enigma do Príncipe)\n[1] - Chronos\n[2] - Lady Killers\n[3] - Bíblia Sagrada\n[4] - As vantagens de ser invisível\n[5] - Jojos Bizarre Adventures - Diamond is Unbreakable\n[6] - Sair");
             opcao = int.Parse(Console.ReadLine());
